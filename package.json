@@ -1,0 +1,19 @@
+{
+  "name": "express-remote-schema-stitching",
+  "version": "1.0.0",
+  "description": "Application that stitches two remote schemas.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MarekChoinski/express-remote-schema-stitching.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MarekChoinski/express-remote-schema-stitching/issues"
+  },
+  "homepage": "https://github.com/MarekChoinski/express-remote-schema-stitching#readme"
+}
