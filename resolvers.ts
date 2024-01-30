@@ -1,17 +1,15 @@
-import { logAccess } from "../../utils/logAccess";
+import { logAccess } from "./utils/logAccess";
 import path from "path";
 import fs from "fs";
 
 export const resolvers = {
   Query: {
-    // fixme
     secureQuery1: async (_: any, _args: any, context: any) => {
       if (!context.req.isAuthenticated()) {
         throw new Error("Error during authentication");
       }
 
-      // FIXME: check context.user
-      logAccess("secureQuery1", context.user);
+      logAccess("secureQuery1", context.user.id);
 
       return "secureQuery1";
     },
@@ -20,8 +18,7 @@ export const resolvers = {
         throw new Error("Error during authentication");
       }
 
-      // FIXME: check context.user
-      logAccess("secureQuery2", context.user);
+      logAccess("secureQuery2", context.user.id);
 
       return "secureQuery2";
     },
@@ -30,7 +27,7 @@ export const resolvers = {
         throw new Error("Error during authentication");
       }
 
-      logAccess("accessLog", context.user);
+      logAccess("accessLog", context.user.id);
 
       // Read access log from file and return as an array
       const logFilePath = path.join(__dirname, "access.log");

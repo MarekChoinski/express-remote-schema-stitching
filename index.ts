@@ -13,8 +13,8 @@ import { stitchSchemas } from "@graphql-tools/stitch";
 import cors from "cors";
 import { remoteExecutorCart } from "./schemas/cart/executor";
 import { remoteExecutorCountries } from "./schemas/countries/executor";
-import { resolvers } from "./schemas/local/resolvers";
-import { typeDefs } from "./schemas/local/typeDefs";
+import { resolvers } from "./resolvers";
+import { typeDefs } from "./typeDefs";
 import { verifyUser } from "./utils/verifyUser";
 
 const port = 3000;
@@ -48,7 +48,6 @@ async function createApolloServer() {
     schema,
     typeDefs,
     resolvers,
-    // csrfPrevention: false,
     context: ({ req, res }) => ({ req, res, user: req.user }),
     playground: true,
   } as Config<ExpressContext>);
@@ -88,7 +87,7 @@ async function createApolloServer() {
 
   passport.deserializeUser(function (_id, done) {
     // NOTE: fake user
-    const user = { id: "id", username: "exampleUser" };
+    const user = { id: "some_fake_id", username: "exampleUser" };
     done(null, user);
   });
 

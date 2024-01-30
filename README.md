@@ -4,7 +4,7 @@ Application that stitches two remote schemas.
 
 ## Install dependencies
 
-Nodemon and ts-node is recommended to be installed.
+Nodemon and ts-node is recommended to be installed (not necessary globally).
 
 ```
 npm install -g ts-node nodemon
@@ -22,6 +22,8 @@ npm i
 nodemon index.ts
 ```
 
+On `localhost:3000/graphql` playground is available.
+
 ### Login
 
 ```
@@ -38,4 +40,35 @@ curl -i -b cookies.txt -X POST -H "Content-Type: application/json" --data '{"que
 
 ```
 curl -i -b cookies.txt -X POST -H "Content-Type: application/json" --data '{"query":"{ secureQuery2 }"}' http://localhost:3000/graphql
+```
+
+### Access log
+
+```
+curl -i -b cookies.txt -X POST -H "Content-Type: application/json" --data '{"query":"{ accessLog }"}' http://localhost:3000/graphql
+```
+
+### Public query
+
+For example
+
+```
+{
+    COUNTRY_country(code: "BR") {
+        name
+        native
+        emoji
+        currency
+        languages {
+            code
+            name
+        }
+    }
+}
+```
+
+Curl:
+
+```
+curl -i -b cookies.txt -X POST -H "Content-Type: application/json" --data '{"query":"{ COUNTRY_country(code: \"BR\") { name native emoji currency languages { code name } } }"}' http://localhost:3000/graphql
 ```
